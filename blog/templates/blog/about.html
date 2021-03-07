@@ -1,0 +1,17 @@
+
+{% block content %}
+    <h1 align=center>Type your text to encrypt</h1><br>
+	<form action = "" method = "post" align=center> 
+    {% csrf_token %} 
+    {{form }} 
+    <br>
+    <input type="submit" name="btnform1" value=Submit" style="background-color:#5D6D7E;margin-left:auto;margin-right:auto;display:block;margin-top:2%;margin-bottom:2%"> 
+</form>
+<h1 align=center>Type your text to decrypt</h1><br>
+<form action = "" method = "post" align=center> 
+    {% csrf_token %} 
+    {{form1 }} 
+    <br>
+    <input type="submit"  name="btnform2" value=Submit" style="background-color:#5D6D7E;margin-left:auto;margin-right:auto;display:block;margin-top:5%;margin-bottom:5%"> 
+</form>
+{% endblock content %}

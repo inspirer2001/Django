@@ -1,0 +1,26 @@
+{% extends "blog/base.html" %} 
+{% block content %}
+<style>
+    body {
+        font-family: "Roboto", sans-serif;
+        font-size: 18px;
+        background-color:#0B0C10 ;
+    }
+</style>
+<div  class="container">
+    <div class="row">
+        <!-- Blog Entries Column -->
+        <div class="col-md-10 mt-3 left">
+            {% for blog in blogs %}
+            <div  class="card mb-4">
+                <div  class="card-body">
+                    <h2 style="color:red;"  class="card-title">{{ blog.title }}</h2>
+                    <p class="card-text text-muted h6">{{ blog.author }} | {{ blog.created_on}} </p>
+                    <p class="card-text">{{blog.body|slice:":200" }}</p>
+                </div>
+            </div>
+            {% endfor %}
+</div>
+</div>
+</div>
+{%endblock%}
