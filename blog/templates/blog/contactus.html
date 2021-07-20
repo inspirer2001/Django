@@ -1,36 +1,25 @@
-{% extends "blog/base1.html" %} 
+{% extends "blog/base.html" %}
+{% load static %}
 {% block content %}
-
 <style>
     body {
         font-family: "Roboto", sans-serif;
-        font-size: 15px;
-        font-color:white;
-        background-color: #0B0C10;
-    }
-    
-    .head_text {
-        color: white;
-    }
-    
-    .card {
-        box-shadow: 0 16px 4px #E3E7EB;
+        font-size: 18px;
+        background-color:#608248 ;
     }
 </style>
 {% for news in newses %}
-<div class="container">
   <!-- Left-aligned media object -->
-  <div class="media">
-    <div class="media-body">
-    	<br>
+  <div class="clearfix city">
+    <div class="ct">
       <h4 style="color:red;" class="media-heading">{{news.title}}</h4>
       <p class="card-text text-muted h6">{{ news.created_on}} </p>
+    </div>
+    <div class="clearfix">
       <p style="color:white;">{{news.body|slice:":300"}}</p>
+      <img src="{{news.image.url}}" class="img2" style="width:200px">
     </div>
-    <div class="media-right">
-      <img src="{{news.image.url}}" class="media-object" style="width:200px">
-    </div>
-  </div>
 </div>
 {% endfor %}
-{%endblock%}
+</body>
+{% endblock content %}
