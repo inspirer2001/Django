@@ -11,22 +11,14 @@ class SignUpForm(UserCreationForm):
     class Meta:
         model = User
         fields = ('username', 'first_name', 'last_name','Mobile', 'email', 'password1', 'password2', )
+    def clean_email(self):
+       data = self.cleaned_data['email']
+       if User.objects.filter(email=data).exists():
+        raise forms.ValidationError("This email already used")
+       return data
 class InputForm(forms.Form): 
   
     Text= forms.CharField(widget=forms.Textarea)
-class NewUserForm(UserCreationForm):
-    email = forms.EmailField(required=True)
-
-    class Meta:
-        model = User
-        fields = ("username", "email", "password1", "password2")
-
-    def save(self, commit=True):
-        user = super(NewUserForm, self).save(commit=False)
-        user.email = self.cleaned_data["email"]
-        if commit:
-            user.save()
-        return user
 class UserUpdateForm(forms.ModelForm):
     class Meta:
         model = User

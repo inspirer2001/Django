@@ -4,9 +4,10 @@ from.models import blog,Profile,news
 from django.contrib import auth
 from.forms import SignUpForm
 from django.contrib.auth.decorators import login_required
-from.forms import InputForm,NewUserForm,blogform
+from.forms import InputForm,blogform
 from django.contrib import messages
 from django.contrib.auth import login, authenticate
+from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from .forms import UserUpdateForm, ProfileUpdateForm
 from django.shortcuts import render, redirect
@@ -83,6 +84,7 @@ def signup(request):
             form.save()
             username = form.cleaned_data.get('username')
             raw_password = form.cleaned_data.get('password1')
+            User._meta.get_field('email')._unique = True
             user = authenticate(username=username, password=raw_password)
             profile=Profile.objects.create(user=user)
             profile.Mobile=form.cleaned_data.get('Mobile')
